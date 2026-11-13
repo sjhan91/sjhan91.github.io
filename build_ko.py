@@ -1,9 +1,13 @@
 #!/usr/bin/env python3
-"""Generate the Korean page (ko/index.html) from index.html.
+"""Generate the Korean page (ko/index.html) from index.html, and keep row order tidy.
 
 index.html is the single source. Every element that has a Korean version carries it in a
 data-ko="..." attribute; this script swaps those in, rewrites the <head> SEO block, fixes
 relative asset paths and points the language button back to the English page.
+
+Within each publication sub-group and the invited talks, items of the same year are listed
+from the shortest title to the longest (index.html is re-ordered in place for English; the
+Korean page is ordered by its Korean titles).
 
 Run after editing index.html:   python3 build_ko.py
 """
@@ -51,6 +55,46 @@ def matching_close(src, tag, start):
     raise ValueError(f"unclosed <{tag}> at {start}")
 
 
+YEAR = re.compile(r'<div class="when">(\d{4})')
+TITLE = re.compile(r'<div class="t"[^>]*>(.*?)</div>', re.S)
+CONTAINERS = re.compile(r'<div class="(?:group-body|sec-body)" id="(?:pg-[a-z]+-body|talks-body)">')
+
+
+def title_len(row):
+    t = TITLE.search(row).group(1)
+    t = re.sub(r'<span class="badge">.*?</span>', '', t)
+    return len(html.unescape(re.sub(r'<[^>]+>', '', t)).strip())
+
+
+def sort_rows(src):
+    """Within each publication sub-group and the talks list, keep the year order but list
+    items of the same year from the shortest title to the longest."""
+    out, pos = [], 0
+    for c in CONTAINERS.finditer(src):
+        if c.start() < pos:
+            continue
+        body_start = c.end()
+        body_end = matching_close(src, 'div', body_start)
+        body = src[body_start:body_end]
+        rows, spans, i = [], [], 0
+        for m in re.finditer(r'<div class="row[ "]', body):
+            if m.start() < i:
+                continue
+            close = matching_close(body, 'div', body.index('>', m.start()) + 1)
+            end = close + len('</div>')
+            rows.append(body[m.start():end]); spans.append((m.start(), end)); i = end
+        if len(rows) > 1:
+            order = sorted(range(len(rows)), key=lambda k: (-int(YEAR.search(rows[k]).group(1)), title_len(rows[k]), k))
+            new_body, last = [], 0
+            for slot, k in zip(spans, order):
+                new_body.append(body[last:slot[0]]); new_body.append(rows[k]); last = slot[1]
+            new_body.append(body[last:])
+            body = ''.join(new_body)
+        out.append(src[pos:body_start]); out.append(body); pos = body_end
+    out.append(src[pos:])
+    return ''.join(out)
+
+
 def swap_korean(src):
     edits = []
     for m in OPEN_TAG.finditer(src):
@@ -64,8 +108,14 @@ def swap_korean(src):
 
 
 def build():
-    src = (ROOT / "index.html").read_text(encoding="utf-8")
-    out, n = swap_korean(src)
+    en_path = ROOT / "index.html"
+    src = en_path.read_text(encoding="utf-8")
+    sorted_src = sort_rows(src)               # English: same-year items ordered by title length
+    if sorted_src != src:
+        en_path.write_text(sorted_src, encoding="utf-8")
+        print("re-ordered rows in index.html (same year: shortest title first)")
+    out, n = swap_korean(sorted_src)
+    out = sort_rows(out)                      # Korean: talk titles differ, so order by Korean length
 
     out = out.replace('<html lang="en">', '<html lang="ko">', 1)
     out = re.sub(r'<!-- seo:start.*?<!-- seo:end -->', lambda _: SEO_KO, out, count=1, flags=re.S)
