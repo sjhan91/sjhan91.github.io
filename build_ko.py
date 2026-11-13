@@ -5,7 +5,7 @@ index.html is the single source. Every element that has a Korean version carries
 data-ko="..." attribute; this script swaps those in, rewrites the <head> SEO block, fixes
 relative asset paths and points the language button back to the English page.
 
-Within each publication sub-group and the invited talks, items of the same year are listed
+Within each publication sub-group, teaching & mentoring and invited talks, items of the same year are listed
 from the shortest title to the longest (index.html is re-ordered in place for English; the
 Korean page is ordered by its Korean titles).
 
@@ -57,7 +57,7 @@ def matching_close(src, tag, start):
 
 YEAR = re.compile(r'<div class="when">(\d{4})')
 TITLE = re.compile(r'<div class="t"[^>]*>(.*?)</div>', re.S)
-CONTAINERS = re.compile(r'<div class="(?:group-body|sec-body)" id="(?:pg-[a-z]+-body|talks-body)">')
+CONTAINERS = re.compile(r'<div class="(?:group-body|sec-body)" id="(?:pg-[a-z]+-body|talks-body|teaching-body)">')
 
 
 def title_len(row):
