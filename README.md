@@ -1,0 +1,23 @@
+# Sangjun Han (한상준) — CV
+
+**English:** https://sjhan91.github.io/ · **한국어:** https://sjhan91.github.io/ko/
+
+AI Researcher at LG AI Research (Data Intelligence Lab), working on time-series foundation models (EXAONE Forecast), multimodal forecasting, physical simulators, time-series causal discovery, and symbolic music generation.
+
+## Files
+
+| File | Purpose |
+|---|---|
+| `index.html` | The CV (English). **The only file to edit** — Korean text lives in `data-ko="…"` attributes. |
+| `ko/index.html` | Korean page, generated from `index.html`. Do not edit by hand. |
+| `build_ko.py` | Regenerates `ko/index.html`: run `python3 build_ko.py` after every edit to `index.html`. |
+| `robots.txt`, `sitemap.xml` | For search engines. Update `<lastmod>` in `sitemap.xml` when the content changes. |
+| `sj.han.web.jpg` | Profile photo (also used as the link-preview image). |
+
+## Publishing (GitHub Pages)
+
+1. Name the repository **`sjhan91.github.io`** so the site is served at the root URL above.
+2. Settings → Pages → Deploy from branch → `main` / `(root)`.
+3. Google Search Console → add the property `https://sjhan91.github.io/`, verify it, submit `sitemap.xml`, and use "Request indexing" for both pages.
+
+The **PDF** button in the sidebar prints the CV with every section expanded.
