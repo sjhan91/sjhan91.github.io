@@ -9,11 +9,18 @@ Within each publication sub-group, teaching & mentoring and invited talks, items
 from the shortest title to the longest (index.html is re-ordered in place for English; the
 Korean page is ordered by its Korean titles).
 
+It also prints both pages to cv.pdf and ko/cv.pdf with headless Chrome (the @media print
+styles in index.html), which the PDF button downloads.
+
 Run after editing index.html:   python3 build_ko.py
 """
+import glob
 import html
+import os
 import pathlib
 import re
+import shutil
+import subprocess
 
 ROOT = pathlib.Path(__file__).resolve().parent
 BASE = "https://sjhan91.github.io/"
@@ -142,12 +149,34 @@ def build():
         '<a class="btn lang-switch" id="lang" href="ko/" hreflang="ko" lang="ko" aria-label="한국어 버전">',
         '<a class="btn lang-switch" id="lang" href="../" hreflang="en" lang="en" aria-label="English version">', 1)
     out = out.replace('<span id="lang-label">한국어</span>', '<span id="lang-label">English</span>', 1)
+    out = out.replace('download="Sangjun_Han_CV.pdf"', 'download="Sangjun_Han_CV_KO.pdf"', 1)
     assert 'data-ko=' not in out, "some data-ko attributes were not converted"
 
     dest = ROOT / "ko" / "index.html"
     dest.parent.mkdir(exist_ok=True)
     dest.write_text(out, encoding="utf-8")
     print(f"wrote {dest.relative_to(ROOT)}  ({n} Korean strings)")
+    make_pdfs()
+
+
+def find_chrome():
+    for c in [os.environ.get("CHROME"), shutil.which("google-chrome"), shutil.which("chromium"),
+              shutil.which("chromium-browser"), "/Applications/Google Chrome.app/Contents/MacOS/Google Chrome",
+              *sorted(glob.glob(os.path.expanduser("~/.cache/ms-playwright/chromium-*/chrome-linux64/chrome")))[::-1]]:
+        if c and os.path.exists(c):
+            return c
+
+
+def make_pdfs():
+    chrome = find_chrome()
+    if not chrome:
+        print("!! Chrome not found (set CHROME=/path/to/chrome): cv.pdf / ko/cv.pdf NOT updated")
+        return
+    for page, pdf in [("index.html", "cv.pdf"), ("ko/index.html", "ko/cv.pdf")]:
+        subprocess.run([chrome, "--headless=new", "--no-sandbox", "--disable-gpu", "--virtual-time-budget=10000",
+                        "--no-pdf-header-footer", f"--print-to-pdf={ROOT / pdf}", (ROOT / page).as_uri()],
+                       check=True, stdout=subprocess.DEVNULL, stderr=subprocess.DEVNULL)
+        print(f"wrote {pdf}")
 
 
 if __name__ == "__main__":
