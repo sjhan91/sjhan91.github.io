@@ -169,10 +169,17 @@ html[lang="ko"] .hl .k{letter-spacing:.02em}
 .hl-more .cnt{font:400 11px/1 "Geist Mono", monospace; color:var(--faint)}
 .hl-more .chev{width:12px; height:12px; transform:rotate(-90deg); transition:transform .2s}
 .hl-domains.open .hl-more .chev{transform:none}
-.hl-list{display:none; list-style:none; margin:8px 0 0; padding:8px 0 0; border-top:1px solid var(--line-2)}
+.hl-domains{position:relative}
+.hl-list{display:none; position:absolute; top:calc(100% + 6px); left:0; right:0; z-index:20; list-style:none; margin:0;
+  padding:10px 14px 8px; background:var(--surface); border:1px solid var(--line-2); border-radius:10px;
+  box-shadow:0 12px 32px rgba(0,0,0,.12), 0 2px 6px rgba(0,0,0,.06)}
+:root[data-theme="dark"] .hl-list{box-shadow:0 12px 32px rgba(0,0,0,.55)}
+@media (prefers-color-scheme: dark){ :root:not([data-theme="light"]) .hl-list{box-shadow:0 12px 32px rgba(0,0,0,.55)} }
 .hl-domains.open .hl-list{display:block}
-.hl-list li{display:flex; justify-content:space-between; gap:8px; font-size:12.5px; color:var(--fg-2); line-height:1.75}
-.hl-list .cnt{font:400 11px/1.75 "Geist Mono", monospace; color:var(--faint)}
+.hl-list .ttl{font-size:11.5px; color:var(--muted); text-transform:uppercase; letter-spacing:.06em; padding-bottom:6px; margin-bottom:4px; border-bottom:1px solid var(--line)}
+html[lang="ko"] .hl-list .ttl{letter-spacing:.02em}
+.hl-list li{display:flex; justify-content:space-between; gap:8px; font-size:12.5px; color:var(--fg-2); line-height:1.8}
+.hl-list .cnt{font:400 11px/1.8 "Geist Mono", monospace; color:var(--faint)}
 .insights{margin:40px 0 0; padding:24px 0 0; border-top:1px solid var(--line)}
 .insights h2{margin-bottom:16px}
 .insights ul{margin:0; padding:0; list-style:none; max-width:640px}
@@ -273,6 +280,7 @@ section.collapsible:not(.collapsed){padding-bottom:40px}
   aside{position:static; height:auto; padding:0}
   nav.toc, .side-foot, .filter, footer, .lang-switch, .sec-toggle .chev, .sec-toggle .cnt{display:none}
   .collapsed .sec-body, .pub-group.collapsed .group-body, .hl-list{display:block !important}
+  .hl-list{position:static; box-shadow:none; border:0; padding:6px 0 0}
   .hl-more{display:none}
   .sub-toggle .chev{display:none}
   section.collapsible{padding:0; border-top:0; margin-top:22px}
@@ -335,6 +343,7 @@ section.collapsible:not(.collapsed){padding-bottom:40px}
     <div class="hl hl-domains"><div class="k">적용 도메인</div><div class="v"><span class="nw">금융 ·</span> <span class="nw">음악 ·</span> <span class="nw">생체 신호</span></div>
       <button type="button" class="hl-more" aria-expanded="false" aria-controls="hl-topics"><span>전체 보기</span> <span class="cnt">6</span><svg class="chev" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M6 9l6 6 6-6"/></svg></button>
       <ul class="hl-list" id="hl-topics">
+        <li class="ttl" aria-hidden="true">논문 주제별 분포</li>
         <li><span>시계열 예측</span><span class="cnt">7</span></li>
         <li><span>음악 생성</span><span class="cnt">6</span></li>
         <li><span>뇌파 · 수면</span><span class="cnt">6</span></li>
@@ -916,11 +925,15 @@ section.collapsible:not(.collapsed){padding-bottom:40px}
 
 
   // "Show all" topics inside the Domains box
+  function setPop(b, open){ var box = b.closest('.hl'); box.classList.toggle('open', open); b.setAttribute('aria-expanded', String(open)); }
   document.querySelectorAll('.hl-more').forEach(function(b){
-    b.addEventListener('click', function(){
-      var box = b.closest('.hl'), open = !box.classList.contains('open');
-      box.classList.toggle('open', open); b.setAttribute('aria-expanded', String(open));
-    });
+    b.addEventListener('click', function(e){ e.stopPropagation(); setPop(b, !b.closest('.hl').classList.contains('open')); });
+  });
+  document.addEventListener('click', function(e){
+    document.querySelectorAll('.hl.open').forEach(function(box){ if (!box.contains(e.target)) setPop(box.querySelector('.hl-more'), false); });
+  });
+  document.addEventListener('keydown', function(e){
+    if (e.key === 'Escape') document.querySelectorAll('.hl.open').forEach(function(box){ var b = box.querySelector('.hl-more'); setPop(b, false); b.focus(); });
   });
 
   // Publication sub-groups (collapsed by default)
