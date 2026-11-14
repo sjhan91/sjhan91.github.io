@@ -183,6 +183,11 @@ html[lang="ko"] .hl-list .ttl{letter-spacing:.02em}
 .hl-list .cnt{font:400 11px/1.8 "Geist Mono", monospace; color:var(--faint)}
 .news{margin-top:10px; background:var(--chip); border-radius:8px; padding:12px 14px 10px}
 .news.insights .k{text-transform:none}
+.insights .mbr{display:none}
+/* 강연·교육: below ~690px the sentences no longer fit on one line, so break them at fixed points
+   chosen to give every item the same two line lengths (narrow phones get a slightly smaller font) */
+@media (min-width:355px) and (max-width:689px){ .insights .mbr{display:inline} }
+@media (min-width:355px) and (max-width:374px){ .insights .nt{font-size:12.7px} }
 .news-head{display:flex; align-items:baseline; justify-content:space-between; gap:12px}
 .news .k{font-size:12px; color:var(--muted); text-transform:uppercase; letter-spacing:.06em}
 html[lang="ko"] .news .k{letter-spacing:.02em}
@@ -200,9 +205,6 @@ html[lang="ko"] .news .k{letter-spacing:.02em}
 .news-list .nd{font:400 12px/1.7 "Geist Mono", monospace; color:var(--faint)}
 .news-list .nt{color:var(--fg-2)}
 .news-list .nt b{color:var(--fg); font-weight:500}
-.news-list .nl{font:400 11.5px/1 "Geist Mono", monospace; color:var(--muted); margin-left:6px; white-space:nowrap}
-.news-list .nl::after{content:" ↗"; color:var(--faint)}
-.news-list .nl:hover{color:var(--accent)}
 section{margin-top:80px}
 .sec-head{display:flex; align-items:baseline; justify-content:space-between; gap:16px; margin-bottom:24px; position:relative}
 h2{font:500 12px/1 "Geist Mono", monospace; text-transform:uppercase; letter-spacing:.12em; color:var(--muted); margin:0}
@@ -284,10 +286,9 @@ section.collapsible:not(.collapsed){padding-bottom:40px}
   .intro{max-width:568px}
 }
 @media (max-width:560px){
-  .news-list li{grid-template-columns:1fr; gap:0; padding:7px 0; position:relative}
+  .news-list li{grid-template-columns:1fr; gap:0; padding:7px 0}
   .news-list .nd{line-height:1.5}
   .news-list .nt > span:first-child{display:block}
-  .news-list .nl{position:absolute; top:7px; right:0; margin:0; line-height:18px}
   .highlights{grid-template-columns:1fr; gap:8px}
   .hl{padding:11px 14px}
   .kw-grid{grid-template-columns:repeat(2,minmax(0,1fr)); gap:18px 20px}
@@ -391,20 +392,20 @@ section.collapsible:not(.collapsed){padding-bottom:40px}
     <div class="news-head"><div class="k" data-ko="소식">News</div><button type="button" class="news-more" aria-expanded="false" aria-controls="news-list"><span data-ko="전체 보기">Show all</span> <span class="cnt">6</span><svg class="chev" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M6 9l6 6 6-6"/></svg></button></div>
     <ul class="news-list" id="news-list">
       <li><span class="nd">2026.10</span><span class="nt"><span data-ko="NeurIPS&#x27;26 워크숍 논문 3편 채택">3 papers accepted at NeurIPS'26 Workshops</span></span></li>
-      <li><span class="nd">2026.09</span><span class="nt"><span data-ko="&lt;b&gt;PALM&lt;/b&gt;, ICAIF&#x27;26 워크숍 채택"><b>PALM</b> accepted at ICAIF'26 Workshop</span> <a class="nl" href="https://arxiv.org/abs/2609.30316" target="_blank" rel="noopener noreferrer">arXiv</a></span></li>
-      <li><span class="nd">2026.09</span><span class="nt"><span data-ko="&lt;b&gt;EXAONE Demand 1.0&lt;/b&gt; · &lt;b&gt;EXAONE Forecast for Finance&lt;/b&gt; 모델 및 기술 보고서 공개"><b>EXAONE Demand 1.0</b> and <b>EXAONE Forecast for Finance</b> released</span> <a class="nl" href="https://arxiv.org/abs/2609.30880" target="_blank" rel="noopener noreferrer">arXiv</a></span></li>
-      <li><span class="nd">2026.08</span><span class="nt"><span data-ko="KDD&#x27;26 Enterprise AI Agents 워크숍 &lt;b&gt;최우수 논문상&lt;/b&gt;"><b>Best Paper Award</b>, KDD'26 Workshop on Enterprise AI Agents</span> <a class="nl" href="https://arxiv.org/abs/2608.03339" target="_blank" rel="noopener noreferrer">arXiv</a></span></li>
-      <li class="more"><span class="nd">2026.08</span><span class="nt"><span data-ko="금융 시계열 벤치마크 &lt;b&gt;FinVerse&lt;/b&gt; 공개"><b>FinVerse</b> financial benchmark released</span> <a class="nl" href="https://arxiv.org/abs/2608.03259" target="_blank" rel="noopener noreferrer">arXiv</a></span></li>
-      <li class="more"><span class="nd">2026.05</span><span class="nt"><span data-ko="ICASSP&#x27;26 구두 발표">Oral presentation at ICASSP'26</span> <a class="nl" href="https://arxiv.org/abs/2604.05543" target="_blank" rel="noopener noreferrer">arXiv</a></span></li>
+      <li><span class="nd">2026.09</span><span class="nt"><span data-ko="&lt;b&gt;PALM&lt;/b&gt;, ICAIF&#x27;26 워크숍 채택"><b>PALM</b> accepted at ICAIF'26 Workshop</span></span></li>
+      <li><span class="nd">2026.09</span><span class="nt"><span data-ko="&lt;b&gt;EXAONE Demand 1.0&lt;/b&gt; · &lt;b&gt;EXAONE Forecast for Finance&lt;/b&gt; 모델 및 기술 보고서 공개"><b>EXAONE Demand 1.0</b> and <b>EXAONE Forecast for Finance</b> released</span></span></li>
+      <li><span class="nd">2026.08</span><span class="nt"><span data-ko="KDD&#x27;26 Enterprise AI Agents 워크숍 &lt;b&gt;최우수 논문상&lt;/b&gt;"><b>Best Paper Award</b>, KDD'26 Workshop on Enterprise AI Agents</span></span></li>
+      <li class="more"><span class="nd">2026.08</span><span class="nt"><span data-ko="금융 시계열 벤치마크 &lt;b&gt;FinVerse&lt;/b&gt; 공개"><b>FinVerse</b> financial benchmark released</span></span></li>
+      <li class="more"><span class="nd">2026.05</span><span class="nt"><span data-ko="ICASSP&#x27;26 구두 발표">Oral presentation at ICASSP'26</span></span></li>
     </ul>
   </div>
   <div class="news insights ko-only" lang="ko" id="insights">
     <div class="news-head"><div class="k">강연·교육</div></div>
     <ul class="news-list">
-      <li><span class="nd">01</span><span class="nt">인공지능의 핵심 원리를 청중에 맞게 교양 또는 전공의 수준으로 쉽고 명확하게 설명할 수 있습니다.</span></li>
-      <li><span class="nd">02</span><span class="nt">인공지능과 관련된 배경 지식 (코딩, 수학, 확률/통계) 및 실무에서 얻은 통찰을 전달드릴 수 있습니다.</span></li>
-      <li><span class="nd">03</span><span class="nt">딥러닝의 역사와 최신 연구 흐름 그리고 산업 현장에서의 다양한 적용 사례를 소개드릴 수 있습니다.</span></li>
-      <li><span class="nd">04</span><span class="nt">실제 산업 사례를 바탕으로 코딩 실습과 함께 다양한 주제의 튜토리얼을 직접 진행할 수 있습니다.</span></li>
+      <li><span class="nd">01</span><span class="nt">인공지능의 핵심 원리를 청중에 맞추어 교양 또는 전공의<br class="mbr"> 수준으로 쉽고 명확하게 설명할 수 있습니다.</span></li>
+      <li><span class="nd">02</span><span class="nt">인공지능과 관련된 배경 지식 (코딩, 수학, 확률/통계) 및<br class="mbr"> 실무에서 얻은 통찰을 전달드릴 수 있습니다.</span></li>
+      <li><span class="nd">03</span><span class="nt">딥러닝의 역사와 최신 연구 흐름 그리고 산업 현장에서의<br class="mbr"> 다양한 적용 사례들을 소개드릴 수 있습니다.</span></li>
+      <li><span class="nd">04</span><span class="nt">실제 산업 사례를 바탕으로 한 코딩 실습과 함께 다양한<br class="mbr"> 주제의 튜토리얼을 직접 진행할 수 있습니다.</span></li>
     </ul>
   </div>
 
