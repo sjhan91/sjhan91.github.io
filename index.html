@@ -202,8 +202,8 @@ html[lang="ko"] .news .k{letter-spacing:.02em}
 .news-list .nl{font:400 11.5px/1 "Geist Mono", monospace; color:var(--muted); margin-left:6px; white-space:nowrap}
 .news-list .nl::after{content:" ↗"; color:var(--faint)}
 .news-list .nl:hover{color:var(--accent)}
-.insights{margin:40px 0 0; padding:24px 0 0; border-top:1px solid var(--line)}
-.insights h2{margin-bottom:16px}
+.insights{margin:10px 0 0; padding:12px 14px 6px; background:var(--chip); border-radius:8px}
+html .insights h2, html[lang="ko"] .insights h2{margin:0 0 8px; font:400 12px/1.4 Geist, "Pretendard Variable", sans-serif; color:var(--muted); letter-spacing:.02em; text-transform:none}
 .insights ul{margin:0; padding:0; list-style:none; max-width:640px}
 .insights li{position:relative; padding-left:16px; margin:0 0 8px; font-size:14.5px; color:var(--fg-2)}
 .insights li::before{content:""; position:absolute; left:3px; top:calc(.825em - 2px); width:4px; height:4px; border-radius:50%; background:var(--muted)}
@@ -270,7 +270,7 @@ footer{margin-top:96px; padding-top:20px; border-top:1px solid var(--line); font
 section.collapsible{margin-top:0; padding:22px 0; border-top:1px solid var(--line)}
 section.collapsible:not(.collapsed){padding-bottom:40px}
 .collapsed .sec-head{margin-bottom:0}
-.insights + section.collapsible{margin-top:40px}
+.news + section.collapsible{margin-top:40px}
 /* ---------- Responsive ---------- */
 /* Breakpoints keep the prose box at exactly 568px on every screen >= 600px, so wording tuned once fits everywhere */
 @media (max-width:1140px){
@@ -389,6 +389,15 @@ section.collapsible:not(.collapsed){padding-bottom:40px}
       </ul>
     </div>
   </div>
+  <div class="insights ko-only" lang="ko">
+    <h2>AI Full Stack Insights: 이론, 역사, 산업 실무</h2>
+    <ul>
+      <li>인공지능을 청중에 맞게 교양 또는 전공의 수준으로 설명할 수 있습니다.</li>
+      <li>인공지능과 관련된 배경 지식 (코딩, 수학, 확률/통계) 및 통찰을 전달드릴 수 있습니다.</li>
+      <li>딥러닝의 역사와 최신 연구 흐름 그리고 산업에서의 적용 사례를 소개드릴 수 있습니다.</li>
+      <li>실제 사례를 바탕으로 다양한 튜토리얼을 진행할 수 있습니다.</li>
+    </ul>
+  </div>
   <div class="news" id="news">
     <div class="news-head"><div class="k" data-ko="소식">News</div><button type="button" class="news-more" aria-expanded="false" aria-controls="news-list"><span data-ko="전체 보기">Show all</span> <span class="cnt">6</span><svg class="chev" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M6 9l6 6 6-6"/></svg></button></div>
     <ul class="news-list" id="news-list">
@@ -401,15 +410,6 @@ section.collapsible:not(.collapsed){padding-bottom:40px}
     </ul>
   </div>
 
-  <div class="insights ko-only" lang="ko">
-    <h2>AI Full Stack Insights: 이론, 역사, 산업 실무</h2>
-    <ul>
-      <li>인공지능을 청중에 맞게 교양 또는 전공의 수준으로 설명할 수 있습니다.</li>
-      <li>인공지능과 관련된 배경 지식 (코딩, 수학, 확률/통계) 및 통찰을 전달드릴 수 있습니다.</li>
-      <li>딥러닝의 역사와 최신 연구 흐름 그리고 산업에서의 적용 사례를 소개드릴 수 있습니다.</li>
-      <li>실제 사례를 바탕으로 다양한 튜토리얼을 진행할 수 있습니다.</li>
-    </ul>
-  </div>
 
 
   <!-- ===== Experience & Education ===== -->
