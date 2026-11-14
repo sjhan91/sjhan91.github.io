@@ -191,17 +191,9 @@ html[lang="ko"] .hl-list .ttl{letter-spacing:.02em}
 .news-head{display:flex; align-items:baseline; justify-content:space-between; gap:12px}
 .news .k{font-size:12px; color:var(--muted); text-transform:uppercase; letter-spacing:.06em}
 html[lang="ko"] .news .k{letter-spacing:.02em}
-.news-more{all:unset; cursor:pointer; display:inline-flex; align-items:center; gap:5px; font-size:12.5px; color:var(--muted); border-radius:4px}
-.news-more:hover{color:var(--accent)}
-.news-more:focus-visible{outline:2px solid var(--accent); outline-offset:2px}
-.news-more .cnt{font:400 11px/1 "Geist Mono", monospace; color:var(--faint)}
-.news-more .chev{width:12px; height:12px; transform:rotate(-90deg); transition:transform .2s}
-.news.open .news-more .chev{transform:none}
 .news-list{list-style:none; margin:6px 0 0; padding:0}
 .news-list li{display:grid; grid-template-columns:64px minmax(0,1fr); gap:12px; padding:5px 0; border-top:1px solid var(--line-2); font-size:13.5px; line-height:1.5}
 .news-list li:first-child{border-top:0}
-.news-list li.more{display:none}
-.news.open .news-list li.more{display:grid}
 .news-list .nd{font:400 12px/1.7 "Geist Mono", monospace; color:var(--faint)}
 .news-list .nt{color:var(--fg-2)}
 .news-list .nt b{color:var(--fg); font-weight:500}
@@ -288,7 +280,6 @@ section.collapsible:not(.collapsed){padding-bottom:40px}
 @media (max-width:560px){
   .news-list li{grid-template-columns:1fr; gap:0; padding:7px 0}
   .news-list .nd{line-height:1.5}
-  .news-list .nt > span:first-child{display:block}
   .highlights{grid-template-columns:1fr; gap:8px}
   .hl{padding:11px 14px}
   .kw-grid{grid-template-columns:repeat(2,minmax(0,1fr)); gap:18px 20px}
@@ -304,8 +295,7 @@ section.collapsible:not(.collapsed){padding-bottom:40px}
   nav.toc, .side-foot, .filter, footer, .lang-switch, .sec-toggle .chev, .sec-toggle .cnt{display:none}
   .collapsed .sec-body, .pub-group.collapsed .group-body, .hl-list{display:block !important}
   .hl-list{position:static; box-shadow:none; border:0; padding:6px 0 0}
-  .hl-more, .news-more{display:none}
-  .news-list li.more{display:grid !important}
+  .hl-more{display:none}
   .sub-toggle .chev{display:none}
   section.collapsible{padding:0; border-top:0; margin-top:22px}
   main{padding:16px 0 0}
@@ -387,17 +377,6 @@ section.collapsible:not(.collapsed){padding-bottom:40px}
         <li><span data-ko="비전 검사">Vision Inspection</span></li>
       </ul>
     </div>
-  </div>
-  <div class="news" id="news">
-    <div class="news-head"><div class="k" data-ko="소식">News</div><button type="button" class="news-more" aria-expanded="false" aria-controls="news-list"><span data-ko="전체 보기">Show all</span> <span class="cnt">6</span><svg class="chev" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M6 9l6 6 6-6"/></svg></button></div>
-    <ul class="news-list" id="news-list">
-      <li><span class="nd">2026.10</span><span class="nt"><span data-ko="NeurIPS&#x27;26 워크숍 논문 3편 채택">3 papers accepted at NeurIPS'26 Workshops</span></span></li>
-      <li><span class="nd">2026.09</span><span class="nt"><span data-ko="&lt;b&gt;PALM&lt;/b&gt;, ICAIF&#x27;26 워크숍 채택"><b>PALM</b> accepted at ICAIF'26 Workshop</span></span></li>
-      <li><span class="nd">2026.09</span><span class="nt"><span data-ko="&lt;b&gt;EXAONE Forecast for Demand, Finance&lt;/b&gt; 공개"><b>EXAONE Forecast for Demand, Finance</b> released</span></span></li>
-      <li><span class="nd">2026.08</span><span class="nt"><span data-ko="KDD&#x27;26 Enterprise AI Agents 워크숍 &lt;b&gt;최우수 논문상&lt;/b&gt;"><b>Best Paper Award</b>, KDD'26 Workshop on Enterprise AI Agents</span></span></li>
-      <li class="more"><span class="nd">2026.08</span><span class="nt"><span data-ko="금융 시계열 벤치마크 &lt;b&gt;FinVerse&lt;/b&gt; 공개"><b>FinVerse</b> financial benchmark released</span></span></li>
-      <li class="more"><span class="nd">2026.05</span><span class="nt"><span data-ko="ICASSP&#x27;26 구두 발표">Oral presentation at ICASSP'26</span></span></li>
-    </ul>
   </div>
   <div class="news insights ko-only" lang="ko" id="insights">
     <div class="news-head"><div class="k">강연·교육</div></div>
@@ -864,7 +843,7 @@ section.collapsible:not(.collapsed){padding-bottom:40px}
   // 3) else re-choose breaks (TeX-style DP over word/space widths) without letting any middle line drop
   //    below 85% (or below what default wrapping already has); if impossible, keep default wrapping.
   // Breaks are only allowed at plain spaces (never inside .nw spans or at  ).
-  var PROSE = '.what p, .insights .nt, #news .nt > span:first-child', MIN_LAST = 0.5, MIN_BODY = 0.85, MAX_TIGHT = 0.12;
+  var PROSE = '.what p, .insights .nt', MIN_LAST = 0.5, MIN_BODY = 0.85, MAX_TIGHT = 0.12;
   function lineStats(el){
     var bx = box(el), left = bx.left, W = bx.W, tops = [], R = {};
     var tw = document.createTreeWalker(el, NodeFilter.SHOW_TEXT), n;
@@ -980,12 +959,6 @@ section.collapsible:not(.collapsed){padding-bottom:40px}
     if (e.key === 'Escape') document.querySelectorAll('.hl.open').forEach(function(box){ var b = box.querySelector('.hl-more'); setPop(b, false); b.focus(); });
   });
 
-  // News: show the most recent items, the rest on demand
-  var newsBox = document.getElementById('news');
-  if (newsBox) {
-    var nb = newsBox.querySelector('.news-more');
-    nb.addEventListener('click', function(){ var open = !newsBox.classList.contains('open'); newsBox.classList.toggle('open', open); nb.setAttribute('aria-expanded', String(open)); if (open) fixAll(); });
-  }
 
   // Publication sub-groups (collapsed by default)
   document.querySelectorAll('.pub-group').forEach(function(g){
