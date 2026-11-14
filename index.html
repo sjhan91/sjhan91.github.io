@@ -179,6 +179,8 @@ html[lang="ko"] .hl .k{letter-spacing:.02em}
 .hl-list .ttl{font-size:11.5px; color:var(--muted); text-transform:uppercase; letter-spacing:.06em; padding-bottom:6px; margin-bottom:4px; border-bottom:1px solid var(--line)}
 html[lang="ko"] .hl-list .ttl{letter-spacing:.02em}
 .hl-list li{display:flex; justify-content:space-between; gap:8px; font-size:12.5px; color:var(--fg-2); line-height:1.8}
+.hl-list .who{font-size:11.5px; color:var(--faint); white-space:nowrap}
+.hl-list li > span:first-child{white-space:nowrap}
 .hl-list .cnt{font:400 11px/1.8 "Geist Mono", monospace; color:var(--faint)}
 .insights{margin:40px 0 0; padding:24px 0 0; border-top:1px solid var(--line)}
 .insights h2{margin-bottom:16px}
@@ -341,26 +343,26 @@ section.collapsible:not(.collapsed){padding-bottom:40px}
     <div class="hl"><div class="k" data-ko="현재 연구">Current Focus</div><div class="v"><span class="nw">EXAONE Forecast</span></div><div class="s"><span class="nw">Time-series Foundation Model</span></div></div>
     <div class="hl hl-pop"><div class="k" data-ko="연구 분야">Research</div><div class="v" data-ko="&lt;span class=&quot;nw&quot;&gt;예측 ·&lt;/span&gt; &lt;span class=&quot;nw&quot;&gt;해석 ·&lt;/span&gt; &lt;span class=&quot;nw&quot;&gt;생성&lt;/span&gt;"><span class="nw">Predict ·</span> <span class="nw">Explain ·</span> <span class="nw">Generate</span></div>
       <button type="button" class="hl-more" aria-expanded="false" aria-controls="hl-research"><span data-ko="전체 보기">Show all</span> <span class="cnt">6</span><svg class="chev" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M6 9l6 6 6-6"/></svg></button>
-      <ul class="hl-list" id="hl-research">
+      <ul class="hl-list sort-len" id="hl-research">
         <li class="ttl" aria-hidden="true" data-ko="관심 연구 분야">Research interests</li>
-        <li><span data-ko="시계열 파운데이션 모델">Time-series Foundation Models</span></li>
-        <li><span data-ko="멀티모달 예측">Multimodal Forecasting</span></li>
         <li><span data-ko="물리 시뮬레이터">Physical Simulator</span></li>
-        <li><span data-ko="시계열 인과 추론">Time-series Causal Discovery</span></li>
-        <li><span data-ko="심볼릭 음악 생성">Symbolic Music Generation</span></li>
         <li><span data-ko="생체 신호 처리">Bio-signal Processing</span></li>
+        <li><span data-ko="멀티모달 예측">Multimodal Forecasting</span></li>
+        <li><span data-ko="심볼릭 음악 생성">Symbolic Music Generation</span></li>
+        <li><span data-ko="시계열 인과 추론">Time-series Causal Discovery</span></li>
+        <li><span data-ko="시계열 파운데이션 모델">Time-series Foundation Models</span></li>
       </ul>
     </div>
-    <div class="hl hl-pop"><div class="k" data-ko="적용 도메인">Domains</div><div class="v" data-ko="&lt;span class=&quot;nw&quot;&gt;금융 ·&lt;/span&gt; &lt;span class=&quot;nw&quot;&gt;음악 ·&lt;/span&gt; &lt;span class=&quot;nw&quot;&gt;생체 신호&lt;/span&gt;"><span class="nw">Finance ·</span> <span class="nw">Music ·</span> <span class="nw">Bio-signal</span></div>
+    <div class="hl hl-pop"><div class="k" data-ko="적용 도메인">Domains</div><div class="v" data-ko="&lt;span class=&quot;nw&quot;&gt;원자재 ·&lt;/span&gt; &lt;span class=&quot;nw&quot;&gt;배터리 ·&lt;/span&gt; &lt;span class=&quot;nw&quot;&gt;음악&lt;/span&gt;"><span class="nw">Commodity ·</span> <span class="nw">Battery ·</span> <span class="nw">Music</span></div>
       <button type="button" class="hl-more" aria-expanded="false" aria-controls="hl-topics"><span data-ko="전체 보기">Show all</span> <span class="cnt">6</span><svg class="chev" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M6 9l6 6 6-6"/></svg></button>
-      <ul class="hl-list" id="hl-topics">
-        <li class="ttl" aria-hidden="true" data-ko="논문 주제별 분포">Papers by topic</li>
-        <li><span data-ko="시계열 예측">Time-series Forecasting</span><span class="cnt">7</span></li>
-        <li><span data-ko="음악 생성">Music Generation</span><span class="cnt">6</span></li>
-        <li><span data-ko="뇌파 · 수면">EEG &amp; Sleep</span><span class="cnt">6</span></li>
-        <li><span data-ko="금융">Finance</span><span class="cnt">3</span></li>
-        <li><span data-ko="인과 추론">Causal Discovery</span><span class="cnt">2</span></li>
-        <li><span data-ko="이상치 탐지 (OOD)">OOD Detection</span><span class="cnt">1</span></li>
+      <ul class="hl-list sort-len" id="hl-topics">
+        <li class="ttl" aria-hidden="true" data-ko="산업 프로젝트 도메인">Industry project domains</li>
+        <li><span data-ko="음악">Music</span><span class="who" data-ko="LG AI연구원">LG AI Research</span></li>
+        <li><span data-ko="리테일">Retail</span><span class="who" data-ko="GS리테일">GS Retail</span></li>
+        <li><span data-ko="배터리">Battery</span><span class="who" data-ko="LG에너지솔루션">LG Energy Solution</span></li>
+        <li><span data-ko="화학">Chemistry</span><span class="who" data-ko="LG화학">LG Chem</span></li>
+        <li><span data-ko="원자재">Commodity</span><span class="who" data-ko="LG엔솔 · 아람코">LGES · Aramco</span></li>
+        <li><span data-ko="제조">Manufacturing</span><span class="who" data-ko="LG디스플레이">LG Display</span></li>
       </ul>
     </div>
   </div>

@@ -178,6 +178,8 @@ html[lang="ko"] .hl .k{letter-spacing:.02em}
 .hl-list .ttl{font-size:11.5px; color:var(--muted); text-transform:uppercase; letter-spacing:.06em; padding-bottom:6px; margin-bottom:4px; border-bottom:1px solid var(--line)}
 html[lang="ko"] .hl-list .ttl{letter-spacing:.02em}
 .hl-list li{display:flex; justify-content:space-between; gap:8px; font-size:12.5px; color:var(--fg-2); line-height:1.8}
+.hl-list .who{font-size:11.5px; color:var(--faint); white-space:nowrap}
+.hl-list li > span:first-child{white-space:nowrap}
 .hl-list .cnt{font:400 11px/1.8 "Geist Mono", monospace; color:var(--faint)}
 .insights{margin:40px 0 0; padding:24px 0 0; border-top:1px solid var(--line)}
 .insights h2{margin-bottom:16px}
@@ -340,26 +342,26 @@ section.collapsible:not(.collapsed){padding-bottom:40px}
     <div class="hl"><div class="k">현재 연구</div><div class="v"><span class="nw">EXAONE Forecast</span></div><div class="s"><span class="nw">Time-series Foundation Model</span></div></div>
     <div class="hl hl-pop"><div class="k">연구 분야</div><div class="v"><span class="nw">예측 ·</span> <span class="nw">해석 ·</span> <span class="nw">생성</span></div>
       <button type="button" class="hl-more" aria-expanded="false" aria-controls="hl-research"><span>전체 보기</span> <span class="cnt">6</span><svg class="chev" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M6 9l6 6 6-6"/></svg></button>
-      <ul class="hl-list" id="hl-research">
+      <ul class="hl-list sort-len" id="hl-research">
         <li class="ttl" aria-hidden="true">관심 연구 분야</li>
-        <li><span>시계열 파운데이션 모델</span></li>
         <li><span>멀티모달 예측</span></li>
         <li><span>물리 시뮬레이터</span></li>
-        <li><span>시계열 인과 추론</span></li>
-        <li><span>심볼릭 음악 생성</span></li>
         <li><span>생체 신호 처리</span></li>
+        <li><span>심볼릭 음악 생성</span></li>
+        <li><span>시계열 인과 추론</span></li>
+        <li><span>시계열 파운데이션 모델</span></li>
       </ul>
     </div>
-    <div class="hl hl-pop"><div class="k">적용 도메인</div><div class="v"><span class="nw">금융 ·</span> <span class="nw">음악 ·</span> <span class="nw">생체 신호</span></div>
+    <div class="hl hl-pop"><div class="k">적용 도메인</div><div class="v"><span class="nw">원자재 ·</span> <span class="nw">배터리 ·</span> <span class="nw">음악</span></div>
       <button type="button" class="hl-more" aria-expanded="false" aria-controls="hl-topics"><span>전체 보기</span> <span class="cnt">6</span><svg class="chev" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M6 9l6 6 6-6"/></svg></button>
-      <ul class="hl-list" id="hl-topics">
-        <li class="ttl" aria-hidden="true">논문 주제별 분포</li>
-        <li><span>시계열 예측</span><span class="cnt">7</span></li>
-        <li><span>음악 생성</span><span class="cnt">6</span></li>
-        <li><span>뇌파 · 수면</span><span class="cnt">6</span></li>
-        <li><span>금융</span><span class="cnt">3</span></li>
-        <li><span>인과 추론</span><span class="cnt">2</span></li>
-        <li><span>이상치 탐지 (OOD)</span><span class="cnt">1</span></li>
+      <ul class="hl-list sort-len" id="hl-topics">
+        <li class="ttl" aria-hidden="true">산업 프로젝트 도메인</li>
+        <li><span>음악</span><span class="who">LG AI연구원</span></li>
+        <li><span>화학</span><span class="who">LG화학</span></li>
+        <li><span>제조</span><span class="who">LG디스플레이</span></li>
+        <li><span>리테일</span><span class="who">GS리테일</span></li>
+        <li><span>배터리</span><span class="who">LG에너지솔루션</span></li>
+        <li><span>원자재</span><span class="who">LG엔솔 · 아람코</span></li>
       </ul>
     </div>
   </div>

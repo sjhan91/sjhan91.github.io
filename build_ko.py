@@ -95,6 +95,24 @@ def sort_rows(src):
     return ''.join(out)
 
 
+LIST = re.compile(r'(<ul class="hl-list sort-len"[^>]*>\n)(.*?)(\n\s*</ul>)', re.S)
+LI = re.compile(r'[ \t]*<li(?! class="ttl")[^>]*>.*?</li>')
+
+
+def sort_popups(src):
+    """Popup lists in the highlight boxes: shortest label first (label = the first span)."""
+    def label_len(li):
+        first = re.search(r'<span[^>]*>(.*?)</span>', li).group(1)
+        return len(html.unescape(re.sub(r'<[^>]+>', '', first)))
+    def fix(m):
+        lines = m.group(2).split('\n')
+        head = [l for l in lines if 'class="ttl"' in l]
+        items = [l for l in lines if LI.fullmatch(l)]
+        items.sort(key=label_len)
+        return m.group(1) + '\n'.join(head + items) + m.group(3)
+    return LIST.sub(fix, src)
+
+
 def swap_korean(src):
     edits = []
     for m in OPEN_TAG.finditer(src):
@@ -110,12 +128,12 @@ def swap_korean(src):
 def build():
     en_path = ROOT / "index.html"
     src = en_path.read_text(encoding="utf-8")
-    sorted_src = sort_rows(src)               # English: same-year items ordered by title length
+    sorted_src = sort_popups(sort_rows(src))  # English: same-year items / popup lists ordered by length
     if sorted_src != src:
         en_path.write_text(sorted_src, encoding="utf-8")
         print("re-ordered rows in index.html (same year: shortest title first)")
     out, n = swap_korean(sorted_src)
-    out = sort_rows(out)                      # Korean: talk titles differ, so order by Korean length
+    out = sort_popups(sort_rows(out))         # Korean: titles differ, so order by Korean length
 
     out = out.replace('<html lang="en">', '<html lang="ko">', 1)
     out = re.sub(r'<!-- seo:start.*?<!-- seo:end -->', lambda _: SEO_KO, out, count=1, flags=re.S)
