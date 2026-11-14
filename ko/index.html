@@ -86,17 +86,17 @@
 <style>
 :root{
   --bg:#fbfbfa; --surface:#ffffff; --fg:#18181b; --fg-2:#3f3f46; --muted:#71717a; --faint:#a1a1aa;
-  --line:#e7e7e4; --line-2:#d9d9d5; --accent:#2b59c3; --hl:rgba(43,89,195,.08);
+  --line:#e7e7e4; --line-2:#d9d9d5; --accent:#2b59c3; --hl:rgba(43,89,195,.08); --chip:#f1f1ef;
 }
 @media (prefers-color-scheme: dark){
   :root:not([data-theme="light"]){
     --bg:#0c0c0e; --surface:#141417; --fg:#ededef; --fg-2:#c8c8cd; --muted:#8b8b93; --faint:#5c5c64;
-    --line:#1f1f23; --line-2:#2c2c32; --accent:#8fb0ff; --hl:rgba(143,176,255,.10);
+    --line:#1f1f23; --line-2:#2c2c32; --accent:#8fb0ff; --hl:rgba(143,176,255,.10); --chip:#17171b;
   }
 }
 :root[data-theme="dark"]{
   --bg:#0c0c0e; --surface:#141417; --fg:#ededef; --fg-2:#c8c8cd; --muted:#8b8b93; --faint:#5c5c64;
-  --line:#1f1f23; --line-2:#2c2c32; --accent:#8fb0ff; --hl:rgba(143,176,255,.10);
+  --line:#1f1f23; --line-2:#2c2c32; --accent:#8fb0ff; --hl:rgba(143,176,255,.10); --chip:#17171b;
 }
 
 *{box-sizing:border-box}
@@ -152,11 +152,16 @@ main{padding:64px 0 96px; min-width:0}
 .intro a:hover{border-color:var(--fg)}
 
 
-.interests{margin:40px 0 0; padding:24px 0 0; border-top:1px solid var(--line)}
 .kw-grid{display:grid; grid-template-columns:repeat(3,minmax(0,1fr)); gap:20px 32px; margin:0; padding:0; list-style:none}
 .kw .n{font:400 11px/1 "Geist Mono", monospace; color:var(--faint); letter-spacing:.06em}
 .kw .k{color:var(--fg); font-weight:500; margin-top:8px; line-height:1.4}
 html:not([lang="ko"]) .ko-only{display:none}
+.highlights{display:grid; grid-template-columns:repeat(3,minmax(0,1fr)); gap:10px; margin:0}
+.hl{background:var(--chip); border-radius:8px; padding:12px 14px}
+.hl .k{font-size:12px; color:var(--muted); text-transform:uppercase; letter-spacing:.06em}
+.hl .v{font-weight:600; font-size:15px; color:var(--fg); margin-top:4px; line-height:1.4}
+.hl .s{font-size:12.5px; color:var(--muted); margin-top:2px; line-height:1.45}
+html[lang="ko"] .hl .k{letter-spacing:.02em}
 .insights{margin:40px 0 0; padding:24px 0 0; border-top:1px solid var(--line)}
 .insights h2{margin-bottom:16px}
 .insights ul{margin:0; padding:0; list-style:none; max-width:640px}
@@ -226,7 +231,7 @@ section.collapsible.collapsed + section.collapsible{margin-top:0}
 section.collapsible:not(.collapsed) + section.collapsible{margin-top:40px}
 section.collapsible.collapsed + section.collapsible:not(.collapsed){padding-top:22px; border-top:1px solid var(--line)}
 .collapsed .sec-head{margin-bottom:0}
-section#interests.collapsed{margin-top:40px}
+.insights + section.collapsible, .insights + section.collapsible.collapsed{margin-top:40px}
 /* ---------- Responsive ---------- */
 /* Breakpoints keep the prose box at exactly 568px on every screen >= 600px, so wording tuned once fits everywhere */
 @media (max-width:1140px){
@@ -238,11 +243,14 @@ section#interests.collapsed{margin-top:40px}
   section{margin-top:56px}
 }
 @media (max-width:780px){
+  .highlights{grid-template-columns:repeat(2,minmax(0,1fr))}
   .row{grid-template-columns:1fr; gap:2px}
   .when{line-height:1.5}
   .intro{max-width:568px}
 }
 @media (max-width:560px){
+  .highlights{grid-template-columns:1fr; gap:8px}
+  .hl{padding:11px 14px}
   .kw-grid{grid-template-columns:repeat(2,minmax(0,1fr)); gap:18px 20px}
   .intro{font-size:15.5px}
   .sec-head{flex-wrap:wrap}
@@ -310,7 +318,14 @@ section#interests.collapsed{margin-top:40px}
 
 <!-- ======================= MAIN ======================= -->
 <main>
-  <p class="intro">다양한 도메인의 시계열 데이터를 처리하고 분석하는 문제를 주로 다루고 (이상 감지, 시계열 예측, 음악 생성, 원자재 가격, 생체 신호 처리), 최근에는 음악 생성 연구 및 시스템 구축을 수행하였습니다. 저는 현재 Data Intelligence Lab에서 다양한 도메인에 대한 일반화된 <span class="nw">Zero-shot Forecasting</span>을 수행하는 <b>Time-series Foundation Model</b>을 개발하고 있습니다. 인공지능과 관련된 강연, 튜토리얼, 전문가 자문 요청은 언제나 환영합니다.</p>
+  <div class="highlights">
+    <div class="hl"><div class="k">현재 연구</div><div class="v"><span class="nw">EXAONE Forecast</span></div><div class="s"><span class="nw">Time-series Foundation Model</span></div></div>
+    <div class="hl"><div class="k">학습 규모</div><div class="v"><span class="nw">23M–1B 파라미터</span></div><div class="s"><span class="nw">2T 데이터 포인트로 학습</span></div></div>
+    <div class="hl"><div class="k">연구 분야</div><div class="v"><span class="nw">시계열 예측</span></div><div class="s"><span class="nw">멀티모달 ·</span> <span class="nw">인과 추론 ·</span> <span class="nw">시뮬레이션</span></div></div>
+    <div class="hl"><div class="k">생성 AI</div><div class="v"><span class="nw">음악 생성</span></div><div class="s"><span class="nw">프로젝트 리더, 2021–2024</span></div></div>
+    <div class="hl"><div class="k">수상</div><div class="v"><span class="nw">KDD'26 최우수 논문</span></div><div class="s"><span class="nw">ICASSP'26 구두 발표</span></div></div>
+    <div class="hl"><div class="k">경력</div><div class="v"><span class="nw">LG 8년+</span></div><div class="s"><span class="nw">LG AI연구원 ·</span> <span class="nw">사이언스파크 ·</span> <span class="nw">CNS</span></div></div>
+  </div>
 
 
   <div class="insights ko-only" lang="ko">
@@ -323,19 +338,6 @@ section#interests.collapsed{margin-top:40px}
     </ul>
   </div>
 
-  <section id="interests" class="interests collapsible">
-    <div class="sec-head"><h2><button type="button" class="sec-toggle" aria-expanded="true" aria-controls="interests-body"><span>분야</span><span class="cnt">6</span><svg class="chev" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M6 9l6 6 6-6"/></svg></button></h2></div>
-    <div class="sec-body" id="interests-body">
-    <ul class="kw-grid">
-      <li class="kw"><div class="n">01</div><div class="k">Time-series Foundation Models</div></li>
-      <li class="kw"><div class="n">02</div><div class="k">Multimodal Forecasting</div></li>
-      <li class="kw"><div class="n">03</div><div class="k">Physical Simulator</div></li>
-      <li class="kw"><div class="n">04</div><div class="k">Time-series Causal Discovery</div></li>
-      <li class="kw"><div class="n">05</div><div class="k">Symbolic Music Generation</div></li>
-      <li class="kw"><div class="n">06</div><div class="k">Bio-signal Processing</div></li>
-    </ul>
-    </div>
-  </section>
 
   <!-- ===== Experience & Education ===== -->
   <section id="experience" class="collapsible">
@@ -788,7 +790,7 @@ section#interests.collapsed{margin-top:40px}
   // 3) else re-choose breaks (TeX-style DP over word/space widths) without letting any middle line drop
   //    below 85% (or below what default wrapping already has); if impossible, keep default wrapping.
   // Breaks are only allowed at plain spaces (never inside .nw spans or at  ).
-  var PROSE = '.intro, .what p, .insights li', MIN_LAST = 0.5, MIN_BODY = 0.85, MAX_TIGHT = 0.12;
+  var PROSE = '.what p, .insights li', MIN_LAST = 0.5, MIN_BODY = 0.85, MAX_TIGHT = 0.12;
   function lineStats(el){
     var bx = box(el), left = bx.left, W = bx.W, tops = [], R = {};
     var tw = document.createTreeWalker(el, NodeFilter.SHOW_TEXT), n;
