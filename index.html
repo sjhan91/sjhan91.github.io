@@ -182,6 +182,7 @@ html[lang="ko"] .hl-list .ttl{letter-spacing:.02em}
 .hl-list li > span:first-child{white-space:nowrap}
 .hl-list .cnt{font:400 11px/1.8 "Geist Mono", monospace; color:var(--faint)}
 .news{margin-top:10px; background:var(--chip); border-radius:8px; padding:12px 14px 10px}
+.news.insights .k{text-transform:none}
 .news-head{display:flex; align-items:baseline; justify-content:space-between; gap:12px}
 .news .k{font-size:12px; color:var(--muted); text-transform:uppercase; letter-spacing:.06em}
 html[lang="ko"] .news .k{letter-spacing:.02em}
@@ -202,11 +203,6 @@ html[lang="ko"] .news .k{letter-spacing:.02em}
 .news-list .nl{font:400 11.5px/1 "Geist Mono", monospace; color:var(--muted); margin-left:6px; white-space:nowrap}
 .news-list .nl::after{content:" ↗"; color:var(--faint)}
 .news-list .nl:hover{color:var(--accent)}
-.insights{margin:10px 0 0; padding:12px 14px 6px; background:var(--chip); border-radius:8px}
-html .insights h2, html[lang="ko"] .insights h2{margin:0 0 8px; font:400 12px/1.4 Geist, "Pretendard Variable", sans-serif; color:var(--muted); letter-spacing:.02em; text-transform:none}
-.insights ul{margin:0; padding:0; list-style:none; max-width:640px}
-.insights li{position:relative; padding-left:16px; margin:0 0 8px; font-size:14.5px; color:var(--fg-2)}
-.insights li::before{content:""; position:absolute; left:3px; top:calc(.825em - 2px); width:4px; height:4px; border-radius:50%; background:var(--muted)}
 section{margin-top:80px}
 .sec-head{display:flex; align-items:baseline; justify-content:space-between; gap:16px; margin-bottom:24px; position:relative}
 h2{font:500 12px/1 "Geist Mono", monospace; text-transform:uppercase; letter-spacing:.12em; color:var(--muted); margin:0}
@@ -389,15 +385,6 @@ section.collapsible:not(.collapsed){padding-bottom:40px}
       </ul>
     </div>
   </div>
-  <div class="insights ko-only" lang="ko">
-    <h2>AI Full Stack Insights: 이론, 역사, 산업 실무</h2>
-    <ul>
-      <li>인공지능을 청중에 맞게 교양 또는 전공의 수준으로 설명할 수 있습니다.</li>
-      <li>인공지능과 관련된 배경 지식 (코딩, 수학, 확률/통계) 및 통찰을 전달드릴 수 있습니다.</li>
-      <li>딥러닝의 역사와 최신 연구 흐름 그리고 산업에서의 적용 사례를 소개드릴 수 있습니다.</li>
-      <li>실제 사례를 바탕으로 다양한 튜토리얼을 진행할 수 있습니다.</li>
-    </ul>
-  </div>
   <div class="news" id="news">
     <div class="news-head"><div class="k" data-ko="소식">News</div><button type="button" class="news-more" aria-expanded="false" aria-controls="news-list"><span data-ko="전체 보기">Show all</span> <span class="cnt">6</span><svg class="chev" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M6 9l6 6 6-6"/></svg></button></div>
     <ul class="news-list" id="news-list">
@@ -407,6 +394,15 @@ section.collapsible:not(.collapsed){padding-bottom:40px}
       <li><span class="nd">2026.08</span><span class="nt"><span data-ko="KDD&#x27;26 Enterprise AI Agents 워크숍 &lt;b&gt;최우수 논문상&lt;/b&gt;"><b>Best Paper Award</b>, KDD'26 Workshop on Enterprise AI Agents</span> <a class="nl" href="https://arxiv.org/abs/2608.03339" target="_blank" rel="noopener noreferrer">arXiv</a></span></li>
       <li class="more"><span class="nd">2026.08</span><span class="nt"><span data-ko="금융 시계열 벤치마크 &lt;b&gt;FinVerse&lt;/b&gt; 공개"><b>FinVerse</b> benchmark for financial time series released</span> <a class="nl" href="https://arxiv.org/abs/2608.03259" target="_blank" rel="noopener noreferrer">arXiv</a></span></li>
       <li class="more"><span class="nd">2026.05</span><span class="nt"><span data-ko="ICASSP&#x27;26 구두 발표">Oral presentation at ICASSP'26</span> <a class="nl" href="https://arxiv.org/abs/2604.05543" target="_blank" rel="noopener noreferrer">arXiv</a></span></li>
+    </ul>
+  </div>
+  <div class="news insights ko-only" lang="ko" id="insights">
+    <div class="news-head"><div class="k">AI Full Stack Insights: 이론, 역사, 산업 실무</div></div>
+    <ul class="news-list">
+      <li><span class="nd">01</span><span class="nt">인공지능을 청중에 맞게 교양 또는 전공의 수준으로 설명할 수 있습니다.</span></li>
+      <li><span class="nd">02</span><span class="nt">인공지능과 관련된 배경 지식 (코딩, 수학, 확률/통계) 및 통찰을 전달드릴 수 있습니다.</span></li>
+      <li><span class="nd">03</span><span class="nt">딥러닝의 역사와 최신 연구 흐름 그리고 산업에서의 적용 사례를 소개드릴 수 있습니다.</span></li>
+      <li><span class="nd">04</span><span class="nt">실제 사례를 바탕으로 다양한 튜토리얼을 진행할 수 있습니다.</span></li>
     </ul>
   </div>
 
@@ -863,7 +859,7 @@ section.collapsible:not(.collapsed){padding-bottom:40px}
   // 3) else re-choose breaks (TeX-style DP over word/space widths) without letting any middle line drop
   //    below 85% (or below what default wrapping already has); if impossible, keep default wrapping.
   // Breaks are only allowed at plain spaces (never inside .nw spans or at  ).
-  var PROSE = '.what p, .insights li', MIN_LAST = 0.5, MIN_BODY = 0.85, MAX_TIGHT = 0.12;
+  var PROSE = '.what p, .insights .nt', MIN_LAST = 0.5, MIN_BODY = 0.85, MAX_TIGHT = 0.12;
   function lineStats(el){
     var bx = box(el), left = bx.left, W = bx.W, tops = [], R = {};
     var tw = document.createTreeWalker(el, NodeFilter.SHOW_TEXT), n;
