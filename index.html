@@ -181,6 +181,27 @@ html[lang="ko"] .hl-list .ttl{letter-spacing:.02em}
 .hl-list li{display:flex; justify-content:space-between; gap:8px; font-size:12.5px; color:var(--fg-2); line-height:1.8}
 .hl-list li > span:first-child{white-space:nowrap}
 .hl-list .cnt{font:400 11px/1.8 "Geist Mono", monospace; color:var(--faint)}
+.news{margin-top:10px; background:var(--chip); border-radius:8px; padding:12px 14px 10px}
+.news-head{display:flex; align-items:baseline; justify-content:space-between; gap:12px}
+.news .k{font-size:12px; color:var(--muted); text-transform:uppercase; letter-spacing:.06em}
+html[lang="ko"] .news .k{letter-spacing:.02em}
+.news-more{all:unset; cursor:pointer; display:inline-flex; align-items:center; gap:5px; font-size:12.5px; color:var(--muted); border-radius:4px}
+.news-more:hover{color:var(--accent)}
+.news-more:focus-visible{outline:2px solid var(--accent); outline-offset:2px}
+.news-more .cnt{font:400 11px/1 "Geist Mono", monospace; color:var(--faint)}
+.news-more .chev{width:12px; height:12px; transform:rotate(-90deg); transition:transform .2s}
+.news.open .news-more .chev{transform:none}
+.news-list{list-style:none; margin:6px 0 0; padding:0}
+.news-list li{display:grid; grid-template-columns:64px minmax(0,1fr); gap:12px; padding:5px 0; border-top:1px solid var(--line-2); font-size:13.5px; line-height:1.5}
+.news-list li:first-child{border-top:0}
+.news-list li.more{display:none}
+.news.open .news-list li.more{display:grid}
+.news-list .nd{font:400 12px/1.7 "Geist Mono", monospace; color:var(--faint)}
+.news-list .nt{color:var(--fg-2)}
+.news-list .nt b{color:var(--fg); font-weight:500}
+.news-list .nl{font:400 11.5px/1 "Geist Mono", monospace; color:var(--muted); margin-left:6px; white-space:nowrap}
+.news-list .nl::after{content:" ↗"; color:var(--faint)}
+.news-list .nl:hover{color:var(--accent)}
 .insights{margin:40px 0 0; padding:24px 0 0; border-top:1px solid var(--line)}
 .insights h2{margin-bottom:16px}
 .insights ul{margin:0; padding:0; list-style:none; max-width:640px}
@@ -267,6 +288,8 @@ section.collapsible:not(.collapsed){padding-bottom:40px}
   .intro{max-width:568px}
 }
 @media (max-width:560px){
+  .news-list li{grid-template-columns:1fr; gap:0; padding:7px 0}
+  .news-list .nd{line-height:1.5}
   .highlights{grid-template-columns:1fr; gap:8px}
   .hl{padding:11px 14px}
   .kw-grid{grid-template-columns:repeat(2,minmax(0,1fr)); gap:18px 20px}
@@ -282,7 +305,8 @@ section.collapsible:not(.collapsed){padding-bottom:40px}
   nav.toc, .side-foot, .filter, footer, .lang-switch, .sec-toggle .chev, .sec-toggle .cnt{display:none}
   .collapsed .sec-body, .pub-group.collapsed .group-body, .hl-list{display:block !important}
   .hl-list{position:static; box-shadow:none; border:0; padding:6px 0 0}
-  .hl-more{display:none}
+  .hl-more, .news-more{display:none}
+  .news-list li.more{display:grid !important}
   .sub-toggle .chev{display:none}
   section.collapsible{padding:0; border-top:0; margin-top:22px}
   main{padding:16px 0 0}
@@ -365,7 +389,17 @@ section.collapsible:not(.collapsed){padding-bottom:40px}
       </ul>
     </div>
   </div>
-
+  <div class="news" id="news">
+    <div class="news-head"><div class="k" data-ko="소식">News</div><button type="button" class="news-more" aria-expanded="false" aria-controls="news-list"><span data-ko="전체 보기">Show all</span> <span class="cnt">6</span><svg class="chev" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M6 9l6 6 6-6"/></svg></button></div>
+    <ul class="news-list" id="news-list">
+      <li><span class="nd">2026.10</span><span class="nt"><span data-ko="NeurIPS&#x27;26 워크숍 논문 3편 채택">3 papers accepted at NeurIPS'26 Workshops</span></span></li>
+      <li><span class="nd">2026.09</span><span class="nt"><span data-ko="&lt;b&gt;PALM&lt;/b&gt;, ICAIF&#x27;26 워크숍 채택"><b>PALM</b> accepted at ICAIF'26 Workshop</span> <a class="nl" href="https://arxiv.org/abs/2609.30316" target="_blank" rel="noopener noreferrer">arXiv</a></span></li>
+      <li><span class="nd">2026.09</span><span class="nt"><span data-ko="&lt;b&gt;EXAONE Demand 1.0&lt;/b&gt; · &lt;b&gt;EXAONE Forecast for Finance&lt;/b&gt; 공개"><b>EXAONE Demand 1.0</b> and <b>EXAONE Forecast for Finance</b> released</span> <a class="nl" href="https://arxiv.org/abs/2609.30880" target="_blank" rel="noopener noreferrer">arXiv</a></span></li>
+      <li><span class="nd">2026.08</span><span class="nt"><span data-ko="KDD&#x27;26 Enterprise AI Agents 워크숍 &lt;b&gt;최우수 논문상&lt;/b&gt;"><b>Best Paper Award</b>, KDD'26 Workshop on Enterprise AI Agents</span> <a class="nl" href="https://arxiv.org/abs/2608.03339" target="_blank" rel="noopener noreferrer">arXiv</a></span></li>
+      <li class="more"><span class="nd">2026.08</span><span class="nt"><span data-ko="금융 시계열 벤치마크 &lt;b&gt;FinVerse&lt;/b&gt; 공개"><b>FinVerse</b> benchmark for financial time series released</span> <a class="nl" href="https://arxiv.org/abs/2608.03259" target="_blank" rel="noopener noreferrer">arXiv</a></span></li>
+      <li class="more"><span class="nd">2026.05</span><span class="nt"><span data-ko="ICASSP&#x27;26 구두 발표">Oral presentation at ICASSP'26</span> <a class="nl" href="https://arxiv.org/abs/2604.05543" target="_blank" rel="noopener noreferrer">arXiv</a></span></li>
+    </ul>
+  </div>
 
   <div class="insights ko-only" lang="ko">
     <h2>AI Full Stack Insights: 이론, 역사, 산업 실무</h2>
@@ -944,6 +978,13 @@ section.collapsible:not(.collapsed){padding-bottom:40px}
   document.addEventListener('keydown', function(e){
     if (e.key === 'Escape') document.querySelectorAll('.hl.open').forEach(function(box){ var b = box.querySelector('.hl-more'); setPop(b, false); b.focus(); });
   });
+
+  // News: show the most recent items, the rest on demand
+  var newsBox = document.getElementById('news');
+  if (newsBox) {
+    var nb = newsBox.querySelector('.news-more');
+    nb.addEventListener('click', function(){ var open = !newsBox.classList.contains('open'); newsBox.classList.toggle('open', open); nb.setAttribute('aria-expanded', String(open)); });
+  }
 
   // Publication sub-groups (collapsed by default)
   document.querySelectorAll('.pub-group').forEach(function(g){
