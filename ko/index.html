@@ -162,20 +162,19 @@ html:not([lang="ko"]) .ko-only{display:none}
 .hl .v{font-weight:600; font-size:15px; color:var(--fg); margin-top:4px; line-height:1.4}
 .hl .s{font-size:12.5px; color:var(--muted); margin-top:2px; line-height:1.45}
 html[lang="ko"] .hl .k{letter-spacing:.02em}
-.highlights{align-items:start}
 .hl-more{all:unset; cursor:pointer; display:inline-flex; align-items:center; gap:5px; margin-top:3px; font-size:12.5px; color:var(--muted); border-radius:4px}
 .hl-more:hover{color:var(--accent)}
 .hl-more:focus-visible{outline:2px solid var(--accent); outline-offset:2px}
 .hl-more .cnt{font:400 11px/1 "Geist Mono", monospace; color:var(--faint)}
 .hl-more .chev{width:12px; height:12px; transform:rotate(-90deg); transition:transform .2s}
-.hl-domains.open .hl-more .chev{transform:none}
-.hl-domains{position:relative}
+.hl-pop.open .hl-more .chev{transform:none}
+.hl-pop{position:relative}
 .hl-list{display:none; position:absolute; top:calc(100% + 6px); left:0; right:0; z-index:20; list-style:none; margin:0;
   padding:10px 14px 8px; background:var(--surface); border:1px solid var(--line-2); border-radius:10px;
   box-shadow:0 12px 32px rgba(0,0,0,.12), 0 2px 6px rgba(0,0,0,.06)}
 :root[data-theme="dark"] .hl-list{box-shadow:0 12px 32px rgba(0,0,0,.55)}
 @media (prefers-color-scheme: dark){ :root:not([data-theme="light"]) .hl-list{box-shadow:0 12px 32px rgba(0,0,0,.55)} }
-.hl-domains.open .hl-list{display:block}
+.hl-pop.open .hl-list{display:block}
 .hl-list .ttl{font-size:11.5px; color:var(--muted); text-transform:uppercase; letter-spacing:.06em; padding-bottom:6px; margin-bottom:4px; border-bottom:1px solid var(--line)}
 html[lang="ko"] .hl-list .ttl{letter-spacing:.02em}
 .hl-list li{display:flex; justify-content:space-between; gap:8px; font-size:12.5px; color:var(--fg-2); line-height:1.8}
@@ -260,7 +259,7 @@ section.collapsible:not(.collapsed){padding-bottom:40px}
   section{margin-top:56px}
 }
 @media (max-width:780px){
-  .highlights{grid-template-columns:repeat(2,minmax(0,1fr))}
+  .highlights{grid-template-columns:1fr; gap:8px}
   .row{grid-template-columns:1fr; gap:2px}
   .when{line-height:1.5}
   .intro{max-width:568px}
@@ -339,8 +338,19 @@ section.collapsible:not(.collapsed){padding-bottom:40px}
 <main>
   <div class="highlights">
     <div class="hl"><div class="k">현재 연구</div><div class="v"><span class="nw">EXAONE Forecast</span></div><div class="s"><span class="nw">Time-series Foundation Model</span></div></div>
-    <div class="hl"><div class="k">연구 분야</div><div class="v"><span class="nw">시계열 예측</span></div><div class="s"><span class="nw">멀티모달 ·</span> <span class="nw">인과 추론 ·</span> <span class="nw">시뮬레이션</span></div></div>
-    <div class="hl hl-domains"><div class="k">적용 도메인</div><div class="v"><span class="nw">금융 ·</span> <span class="nw">음악 ·</span> <span class="nw">생체 신호</span></div>
+    <div class="hl hl-pop"><div class="k">연구 분야</div><div class="v"><span class="nw">예측 ·</span> <span class="nw">해석 ·</span> <span class="nw">생성</span></div>
+      <button type="button" class="hl-more" aria-expanded="false" aria-controls="hl-research"><span>전체 보기</span> <span class="cnt">6</span><svg class="chev" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M6 9l6 6 6-6"/></svg></button>
+      <ul class="hl-list" id="hl-research">
+        <li class="ttl" aria-hidden="true">관심 연구 분야</li>
+        <li><span>시계열 파운데이션 모델</span></li>
+        <li><span>멀티모달 예측</span></li>
+        <li><span>물리 시뮬레이터</span></li>
+        <li><span>시계열 인과 추론</span></li>
+        <li><span>심볼릭 음악 생성</span></li>
+        <li><span>생체 신호 처리</span></li>
+      </ul>
+    </div>
+    <div class="hl hl-pop"><div class="k">적용 도메인</div><div class="v"><span class="nw">금융 ·</span> <span class="nw">음악 ·</span> <span class="nw">생체 신호</span></div>
       <button type="button" class="hl-more" aria-expanded="false" aria-controls="hl-topics"><span>전체 보기</span> <span class="cnt">6</span><svg class="chev" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M6 9l6 6 6-6"/></svg></button>
       <ul class="hl-list" id="hl-topics">
         <li class="ttl" aria-hidden="true">논문 주제별 분포</li>
@@ -352,9 +362,6 @@ section.collapsible:not(.collapsed){padding-bottom:40px}
         <li><span>이상치 탐지 (OOD)</span><span class="cnt">1</span></li>
       </ul>
     </div>
-    <div class="hl"><div class="k">산업 협력</div><div class="v"><span class="nw">LG에너지솔루션 ·</span> <span class="nw">아람코</span></div><div class="s"><span class="nw">LG화학 ·</span> <span class="nw">LG디스플레이 ·</span> <span class="nw">GS리테일</span></div></div>
-    <div class="hl"><div class="k">논문</div><div class="v"><span class="nw">논문 및 보고서 25편</span></div><div class="s"><span class="nw">ICASSP ·</span> <span class="nw">ISMIR ·</span> <span class="nw">KDD ·</span> <span class="nw">NeurIPS WS</span></div></div>
-    <div class="hl"><div class="k">경력</div><div class="v"><span class="nw">LG 8년+</span></div><div class="s"><span class="nw">LG AI연구원 ·</span> <span class="nw">사이언스파크 ·</span> <span class="nw">CNS</span></div></div>
   </div>
 
 
