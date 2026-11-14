@@ -169,7 +169,7 @@ html[lang="ko"] .hl .k{letter-spacing:.02em}
 .insights li{position:relative; padding-left:16px; margin:0 0 8px; font-size:14.5px; color:var(--fg-2)}
 .insights li::before{content:""; position:absolute; left:3px; top:calc(.825em - 2px); width:4px; height:4px; border-radius:50%; background:var(--muted)}
 section{margin-top:80px}
-.sec-head{display:flex; align-items:baseline; justify-content:space-between; gap:16px; margin-bottom:24px}
+.sec-head{display:flex; align-items:baseline; justify-content:space-between; gap:16px; margin-bottom:24px; position:relative}
 h2{font:500 12px/1 "Geist Mono", monospace; text-transform:uppercase; letter-spacing:.12em; color:var(--muted); margin:0}
 h3{font-size:13px; font-weight:500; color:var(--fg); margin:40px 0 4px; display:flex; align-items:center; gap:10px}
 h3 .count{font:400 11px/1 "Geist Mono", monospace; color:var(--faint)}
@@ -198,7 +198,7 @@ h3 .count{font:400 11px/1 "Geist Mono", monospace; color:var(--faint)}
 .links a:hover{color:var(--accent)}
 .links a:hover::after{color:var(--accent)}
 
-.filter{display:inline-flex; border:1px solid var(--line-2); border-radius:7px; padding:2px; gap:2px}
+.filter{display:inline-flex; border:1px solid var(--line-2); border-radius:7px; padding:2px; gap:2px; position:absolute; right:0; top:50%; transform:translateY(-50%)}
 .filter button{font:500 12px/1 Geist, sans-serif; color:var(--muted); background:none; border:0; border-radius:5px; padding:6px 10px; cursor:pointer}
 .filter button[aria-pressed="true"]{background:var(--surface); color:var(--fg); box-shadow:0 0 0 1px var(--line-2)}
 .only-first .row.pub:not(.first){display:none}
@@ -227,12 +227,11 @@ footer{margin-top:96px; padding-top:20px; border-top:1px solid var(--line); font
 .sec-toggle:hover, .sec-toggle:hover .chev{color:var(--fg)}
 .collapsed .sec-toggle .chev{transform:rotate(-90deg)}
 .collapsed .sec-body, .collapsed .filter{display:none}
-section.collapsible.collapsed{margin-top:0; padding:22px 0; border-top:1px solid var(--line)}
-section.collapsible.collapsed + section.collapsible{margin-top:0}
-section.collapsible:not(.collapsed) + section.collapsible{margin-top:40px}
-section.collapsible.collapsed + section.collapsible:not(.collapsed){padding-top:22px; border-top:1px solid var(--line)}
+/* Same box in both states, so a heading never moves when its section opens or closes */
+section.collapsible{margin-top:0; padding:22px 0; border-top:1px solid var(--line)}
+section.collapsible:not(.collapsed){padding-bottom:40px}
 .collapsed .sec-head{margin-bottom:0}
-.insights + section.collapsible, .insights + section.collapsible.collapsed{margin-top:40px}
+.insights + section.collapsible{margin-top:40px}
 /* ---------- Responsive ---------- */
 /* Breakpoints keep the prose box at exactly 568px on every screen >= 600px, so wording tuned once fits everywhere */
 @media (max-width:1140px){
@@ -265,7 +264,7 @@ section.collapsible.collapsed + section.collapsible:not(.collapsed){padding-top:
   nav.toc, .side-foot, .filter, footer, .lang-switch, .sec-toggle .chev, .sec-toggle .cnt{display:none}
   .collapsed .sec-body, .pub-group.collapsed .group-body{display:block !important}
   .sub-toggle .chev{display:none}
-  section.collapsible.collapsed{padding:0; border-top:0; margin-top:22px}
+  section.collapsible{padding:0; border-top:0; margin-top:22px}
   main{padding:16px 0 0}
   section{margin-top:22px}
   .row{break-inside:avoid; padding:6px 0; grid-template-columns:110px 1fr}
