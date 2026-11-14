@@ -154,7 +154,6 @@ main{padding:64px 0 96px; min-width:0}
 
 
 .interests{margin:40px 0 0; padding:24px 0 0; border-top:1px solid var(--line)}
-.interests h2{margin-bottom:20px}
 .kw-grid{display:grid; grid-template-columns:repeat(3,minmax(0,1fr)); gap:20px 32px; margin:0; padding:0; list-style:none}
 .kw .n{font:400 11px/1 "Geist Mono", monospace; color:var(--faint); letter-spacing:.06em}
 .kw .k{color:var(--fg); font-weight:500; margin-top:8px; line-height:1.4}
@@ -228,7 +227,7 @@ section.collapsible.collapsed + section.collapsible{margin-top:0}
 section.collapsible:not(.collapsed) + section.collapsible{margin-top:40px}
 section.collapsible.collapsed + section.collapsible:not(.collapsed){padding-top:22px; border-top:1px solid var(--line)}
 .collapsed .sec-head{margin-bottom:0}
-section#publications.collapsed{margin-top:64px}
+section#interests.collapsed{margin-top:40px}
 /* ---------- Responsive ---------- */
 /* Breakpoints keep the prose box at exactly 568px on every screen >= 600px, so wording tuned once fits everywhere */
 @media (max-width:1140px){
@@ -330,8 +329,9 @@ section#publications.collapsed{margin-top:64px}
     </ul>
   </div>
 
-  <div class="interests">
-    <h2 data-ko="연구 분야">Research Interests</h2>
+  <section id="interests" class="interests collapsible">
+    <div class="sec-head"><h2><button type="button" class="sec-toggle" aria-expanded="true" aria-controls="interests-body"><span data-ko="연구 분야">Research Interests</span><span class="cnt">6</span><svg class="chev" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M6 9l6 6 6-6"/></svg></button></h2></div>
+    <div class="sec-body" id="interests-body">
     <ul class="kw-grid">
       <li class="kw"><div class="n">01</div><div class="k">Time-series Foundation Models</div></li>
       <li class="kw"><div class="n">02</div><div class="k">Multimodal Forecasting</div></li>
@@ -340,11 +340,13 @@ section#publications.collapsed{margin-top:64px}
       <li class="kw"><div class="n">05</div><div class="k">Symbolic Music Generation</div></li>
       <li class="kw"><div class="n">06</div><div class="k">Bio-signal Processing</div></li>
     </ul>
-  </div>
+    </div>
+  </section>
 
   <!-- ===== Experience & Education ===== -->
-  <section id="experience">
-    <div class="sec-head"><h2 data-ko="경력">Experience</h2></div>
+  <section id="experience" class="collapsible">
+    <div class="sec-head"><h2><button type="button" class="sec-toggle" aria-expanded="true" aria-controls="experience-body"><span data-ko="경력">Experience</span><svg class="chev" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M6 9l6 6 6-6"/></svg></button></h2></div>
+    <div class="sec-body" id="experience-body">
     <div class="row">
       <div class="when" data-ko="2020.12 — 현재">2020.12 — Now</div>
       <div class="what"><div class="t" data-ko="LG AI연구원">LG AI Research</div></div>
@@ -369,6 +371,7 @@ section#publications.collapsed{margin-top:64px}
       <div class="when">2011.02 — 2016.08</div>
       <div class="what"><div class="t" data-ko="전산전자공학부 학사 졸업">B.S., Computer Science and Electrical Engineering</div>
         <div class="s" data-ko="한동대학교 (HGU)">Handong Global University (HGU)</div></div>
+    </div>
     </div>
   </section>
 
