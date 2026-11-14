@@ -163,6 +163,17 @@ html:not([lang="ko"]) .ko-only{display:none}
 .hl .v{font-weight:600; font-size:15px; color:var(--fg); margin-top:4px; line-height:1.4}
 .hl .s{font-size:12.5px; color:var(--muted); margin-top:2px; line-height:1.45}
 html[lang="ko"] .hl .k{letter-spacing:.02em}
+.highlights{align-items:start}
+.hl-more{all:unset; cursor:pointer; display:inline-flex; align-items:center; gap:5px; margin-top:3px; font-size:12.5px; color:var(--muted); border-radius:4px}
+.hl-more:hover{color:var(--accent)}
+.hl-more:focus-visible{outline:2px solid var(--accent); outline-offset:2px}
+.hl-more .cnt{font:400 11px/1 "Geist Mono", monospace; color:var(--faint)}
+.hl-more .chev{width:12px; height:12px; transform:rotate(-90deg); transition:transform .2s}
+.hl-domains.open .hl-more .chev{transform:none}
+.hl-list{display:none; list-style:none; margin:8px 0 0; padding:8px 0 0; border-top:1px solid var(--line-2)}
+.hl-domains.open .hl-list{display:block}
+.hl-list li{display:flex; justify-content:space-between; gap:8px; font-size:12.5px; color:var(--fg-2); line-height:1.75}
+.hl-list .cnt{font:400 11px/1.75 "Geist Mono", monospace; color:var(--faint)}
 .insights{margin:40px 0 0; padding:24px 0 0; border-top:1px solid var(--line)}
 .insights h2{margin-bottom:16px}
 .insights ul{margin:0; padding:0; list-style:none; max-width:640px}
@@ -262,7 +273,8 @@ section.collapsible:not(.collapsed){padding-bottom:40px}
   .layout{display:block; padding:0; max-width:none}
   aside{position:static; height:auto; padding:0}
   nav.toc, .side-foot, .filter, footer, .lang-switch, .sec-toggle .chev, .sec-toggle .cnt{display:none}
-  .collapsed .sec-body, .pub-group.collapsed .group-body{display:block !important}
+  .collapsed .sec-body, .pub-group.collapsed .group-body, .hl-list{display:block !important}
+  .hl-more{display:none}
   .sub-toggle .chev{display:none}
   section.collapsible{padding:0; border-top:0; margin-top:22px}
   main{padding:16px 0 0}
@@ -321,7 +333,17 @@ section.collapsible:not(.collapsed){padding-bottom:40px}
   <div class="highlights">
     <div class="hl"><div class="k" data-ko="현재 연구">Current Focus</div><div class="v"><span class="nw">EXAONE Forecast</span></div><div class="s"><span class="nw">Time-series Foundation Model</span></div></div>
     <div class="hl"><div class="k" data-ko="연구 분야">Research</div><div class="v" data-ko="&lt;span class=&quot;nw&quot;&gt;시계열 예측&lt;/span&gt;"><span class="nw">Time-series Forecasting</span></div><div class="s" data-ko="&lt;span class=&quot;nw&quot;&gt;멀티모달 ·&lt;/span&gt; &lt;span class=&quot;nw&quot;&gt;인과 추론 ·&lt;/span&gt; &lt;span class=&quot;nw&quot;&gt;시뮬레이션&lt;/span&gt;"><span class="nw">Multimodal ·</span> <span class="nw">Causality ·</span> <span class="nw">Simulation</span></div></div>
-    <div class="hl"><div class="k" data-ko="적용 도메인">Domains</div><div class="v" data-ko="&lt;span class=&quot;nw&quot;&gt;에너지 ·&lt;/span&gt; &lt;span class=&quot;nw&quot;&gt;금융 ·&lt;/span&gt; &lt;span class=&quot;nw&quot;&gt;음악&lt;/span&gt;"><span class="nw">Energy ·</span> <span class="nw">Finance ·</span> <span class="nw">Music</span></div><div class="s" data-ko="&lt;span class=&quot;nw&quot;&gt;배터리,&lt;/span&gt; &lt;span class=&quot;nw&quot;&gt;원자재,&lt;/span&gt; &lt;span class=&quot;nw&quot;&gt;수요,&lt;/span&gt; &lt;span class=&quot;nw&quot;&gt;생체 신호&lt;/span&gt;"><span class="nw">Battery,</span> <span class="nw">commodity,</span> <span class="nw">demand,</span> <span class="nw">EEG</span></div></div>
+    <div class="hl hl-domains"><div class="k" data-ko="적용 도메인">Domains</div><div class="v" data-ko="&lt;span class=&quot;nw&quot;&gt;금융 ·&lt;/span&gt; &lt;span class=&quot;nw&quot;&gt;음악 ·&lt;/span&gt; &lt;span class=&quot;nw&quot;&gt;생체 신호&lt;/span&gt;"><span class="nw">Finance ·</span> <span class="nw">Music ·</span> <span class="nw">Bio-signal</span></div>
+      <button type="button" class="hl-more" aria-expanded="false" aria-controls="hl-topics"><span data-ko="전체 보기">Show all</span> <span class="cnt">6</span><svg class="chev" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M6 9l6 6 6-6"/></svg></button>
+      <ul class="hl-list" id="hl-topics">
+        <li><span data-ko="시계열 예측">Time-series Forecasting</span><span class="cnt">7</span></li>
+        <li><span data-ko="음악 생성">Music Generation</span><span class="cnt">6</span></li>
+        <li><span data-ko="뇌파 · 수면">EEG &amp; Sleep</span><span class="cnt">6</span></li>
+        <li><span data-ko="금융">Finance</span><span class="cnt">3</span></li>
+        <li><span data-ko="인과 추론">Causal Discovery</span><span class="cnt">2</span></li>
+        <li><span data-ko="이상치 탐지 (OOD)">OOD Detection</span><span class="cnt">1</span></li>
+      </ul>
+    </div>
     <div class="hl"><div class="k" data-ko="산업 협력">Industry Partners</div><div class="v" data-ko="&lt;span class=&quot;nw&quot;&gt;LG에너지솔루션 ·&lt;/span&gt; &lt;span class=&quot;nw&quot;&gt;아람코&lt;/span&gt;"><span class="nw">LG Energy Solution ·</span> <span class="nw">Aramco</span></div><div class="s" data-ko="&lt;span class=&quot;nw&quot;&gt;LG화학 ·&lt;/span&gt; &lt;span class=&quot;nw&quot;&gt;LG디스플레이 ·&lt;/span&gt; &lt;span class=&quot;nw&quot;&gt;GS리테일&lt;/span&gt;"><span class="nw">LG Chem ·</span> <span class="nw">LG Display ·</span> <span class="nw">GS Retail</span></div></div>
     <div class="hl"><div class="k" data-ko="논문">Publications</div><div class="v" data-ko="&lt;span class=&quot;nw&quot;&gt;논문 및 보고서 25편&lt;/span&gt;"><span class="nw">25 papers &amp; reports</span></div><div class="s"><span class="nw">ICASSP ·</span> <span class="nw">ISMIR ·</span> <span class="nw">KDD ·</span> <span class="nw">NeurIPS WS</span></div></div>
     <div class="hl"><div class="k" data-ko="경력">Career</div><div class="v" data-ko="&lt;span class=&quot;nw&quot;&gt;LG 8년+&lt;/span&gt;"><span class="nw">8+ years at LG</span></div><div class="s" data-ko="&lt;span class=&quot;nw&quot;&gt;LG AI연구원 ·&lt;/span&gt; &lt;span class=&quot;nw&quot;&gt;사이언스파크 ·&lt;/span&gt; &lt;span class=&quot;nw&quot;&gt;CNS&lt;/span&gt;"><span class="nw">LG AI Research ·</span> <span class="nw">Sciencepark ·</span> <span class="nw">CNS</span></div></div>
@@ -893,6 +915,14 @@ section.collapsible:not(.collapsed){padding-bottom:40px}
   addEventListener('beforeprint', restoreAll);         // print layout has its own widths: use natural wrapping
   addEventListener('afterprint', fixAll);
 
+
+  // "Show all" topics inside the Domains box
+  document.querySelectorAll('.hl-more').forEach(function(b){
+    b.addEventListener('click', function(){
+      var box = b.closest('.hl'), open = !box.classList.contains('open');
+      box.classList.toggle('open', open); b.setAttribute('aria-expanded', String(open));
+    });
+  });
 
   // Publication sub-groups (collapsed by default)
   document.querySelectorAll('.pub-group').forEach(function(g){
