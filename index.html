@@ -284,8 +284,10 @@ section.collapsible:not(.collapsed){padding-bottom:40px}
   .intro{max-width:568px}
 }
 @media (max-width:560px){
-  .news-list li{grid-template-columns:1fr; gap:0; padding:7px 0}
+  .news-list li{grid-template-columns:1fr; gap:0; padding:7px 0; position:relative}
   .news-list .nd{line-height:1.5}
+  .news-list .nt > span:first-child{display:block}
+  .news-list .nl{position:absolute; top:7px; right:0; margin:0; line-height:18px}
   .highlights{grid-template-columns:1fr; gap:8px}
   .hl{padding:11px 14px}
   .kw-grid{grid-template-columns:repeat(2,minmax(0,1fr)); gap:18px 20px}
@@ -390,19 +392,19 @@ section.collapsible:not(.collapsed){padding-bottom:40px}
     <ul class="news-list" id="news-list">
       <li><span class="nd">2026.10</span><span class="nt"><span data-ko="NeurIPS&#x27;26 워크숍 논문 3편 채택">3 papers accepted at NeurIPS'26 Workshops</span></span></li>
       <li><span class="nd">2026.09</span><span class="nt"><span data-ko="&lt;b&gt;PALM&lt;/b&gt;, ICAIF&#x27;26 워크숍 채택"><b>PALM</b> accepted at ICAIF'26 Workshop</span> <a class="nl" href="https://arxiv.org/abs/2609.30316" target="_blank" rel="noopener noreferrer">arXiv</a></span></li>
-      <li><span class="nd">2026.09</span><span class="nt"><span data-ko="&lt;b&gt;EXAONE Demand 1.0&lt;/b&gt; · &lt;b&gt;EXAONE Forecast for Finance&lt;/b&gt; 공개"><b>EXAONE Demand 1.0</b> and <b>EXAONE Forecast for Finance</b> released</span> <a class="nl" href="https://arxiv.org/abs/2609.30880" target="_blank" rel="noopener noreferrer">arXiv</a></span></li>
+      <li><span class="nd">2026.09</span><span class="nt"><span data-ko="&lt;b&gt;EXAONE Demand 1.0&lt;/b&gt; · &lt;b&gt;EXAONE Forecast for Finance&lt;/b&gt; 모델 및 기술 보고서 공개"><b>EXAONE Demand 1.0</b> and <b>EXAONE Forecast for Finance</b> released</span> <a class="nl" href="https://arxiv.org/abs/2609.30880" target="_blank" rel="noopener noreferrer">arXiv</a></span></li>
       <li><span class="nd">2026.08</span><span class="nt"><span data-ko="KDD&#x27;26 Enterprise AI Agents 워크숍 &lt;b&gt;최우수 논문상&lt;/b&gt;"><b>Best Paper Award</b>, KDD'26 Workshop on Enterprise AI Agents</span> <a class="nl" href="https://arxiv.org/abs/2608.03339" target="_blank" rel="noopener noreferrer">arXiv</a></span></li>
-      <li class="more"><span class="nd">2026.08</span><span class="nt"><span data-ko="금융 시계열 벤치마크 &lt;b&gt;FinVerse&lt;/b&gt; 공개"><b>FinVerse</b> benchmark for financial time series released</span> <a class="nl" href="https://arxiv.org/abs/2608.03259" target="_blank" rel="noopener noreferrer">arXiv</a></span></li>
+      <li class="more"><span class="nd">2026.08</span><span class="nt"><span data-ko="금융 시계열 벤치마크 &lt;b&gt;FinVerse&lt;/b&gt; 공개"><b>FinVerse</b> financial benchmark released</span> <a class="nl" href="https://arxiv.org/abs/2608.03259" target="_blank" rel="noopener noreferrer">arXiv</a></span></li>
       <li class="more"><span class="nd">2026.05</span><span class="nt"><span data-ko="ICASSP&#x27;26 구두 발표">Oral presentation at ICASSP'26</span> <a class="nl" href="https://arxiv.org/abs/2604.05543" target="_blank" rel="noopener noreferrer">arXiv</a></span></li>
     </ul>
   </div>
   <div class="news insights ko-only" lang="ko" id="insights">
     <div class="news-head"><div class="k">강연·교육</div></div>
     <ul class="news-list">
-      <li><span class="nd">01</span><span class="nt">인공지능을 청중에 맞게 교양 또는 전공의 수준으로 설명할 수 있습니다.</span></li>
-      <li><span class="nd">02</span><span class="nt">인공지능과 관련된 배경 지식 (코딩, 수학, 확률/통계) 및 통찰을 전달드릴 수 있습니다.</span></li>
-      <li><span class="nd">03</span><span class="nt">딥러닝의 역사와 최신 연구 흐름 그리고 산업에서의 적용 사례를 소개드릴 수 있습니다.</span></li>
-      <li><span class="nd">04</span><span class="nt">실제 사례를 바탕으로 다양한 튜토리얼을 진행할 수 있습니다.</span></li>
+      <li><span class="nd">01</span><span class="nt">인공지능의 핵심 원리를 청중에 맞게 교양 또는 전공의 수준으로 쉽고 명확하게 설명할 수 있습니다.</span></li>
+      <li><span class="nd">02</span><span class="nt">인공지능과 관련된 배경 지식 (코딩, 수학, 확률/통계) 및 실무에서 얻은 통찰을 전달드릴 수 있습니다.</span></li>
+      <li><span class="nd">03</span><span class="nt">딥러닝의 역사와 최신 연구 흐름 그리고 산업 현장에서의 다양한 적용 사례를 소개드릴 수 있습니다.</span></li>
+      <li><span class="nd">04</span><span class="nt">실제 산업 사례를 바탕으로 코딩 실습과 함께 다양한 주제의 튜토리얼을 직접 진행할 수 있습니다.</span></li>
     </ul>
   </div>
 
@@ -861,7 +863,7 @@ section.collapsible:not(.collapsed){padding-bottom:40px}
   // 3) else re-choose breaks (TeX-style DP over word/space widths) without letting any middle line drop
   //    below 85% (or below what default wrapping already has); if impossible, keep default wrapping.
   // Breaks are only allowed at plain spaces (never inside .nw spans or at  ).
-  var PROSE = '.what p, .insights .nt', MIN_LAST = 0.5, MIN_BODY = 0.85, MAX_TIGHT = 0.12;
+  var PROSE = '.what p, .insights .nt, #news .nt > span:first-child', MIN_LAST = 0.5, MIN_BODY = 0.85, MAX_TIGHT = 0.12;
   function lineStats(el){
     var bx = box(el), left = bx.left, W = bx.W, tops = [], R = {};
     var tw = document.createTreeWalker(el, NodeFilter.SHOW_TEXT), n;
@@ -981,7 +983,7 @@ section.collapsible:not(.collapsed){padding-bottom:40px}
   var newsBox = document.getElementById('news');
   if (newsBox) {
     var nb = newsBox.querySelector('.news-more');
-    nb.addEventListener('click', function(){ var open = !newsBox.classList.contains('open'); newsBox.classList.toggle('open', open); nb.setAttribute('aria-expanded', String(open)); });
+    nb.addEventListener('click', function(){ var open = !newsBox.classList.contains('open'); newsBox.classList.toggle('open', open); nb.setAttribute('aria-expanded', String(open)); if (open) fixAll(); });
   }
 
   // Publication sub-groups (collapsed by default)
