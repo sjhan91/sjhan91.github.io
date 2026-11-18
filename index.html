@@ -272,6 +272,17 @@ section.collapsible:not(.collapsed){padding-bottom:40px}
   main{padding-top:40px}
   section{margin-top:56px}
 }
+/* Medium windows: profile on the left, the three boxes stacked on its right, everything else full width below */
+@media (min-width:781px) and (max-width:1140px){
+  .layout{grid-template-columns:auto minmax(0,1fr); column-gap:48px}
+  main{display:contents}
+  aside{grid-column:1; grid-row:1; padding-top:64px}   /* 64px like desktop: clear of the fixed language button */
+  .highlights{grid-column:2; grid-row:1; align-self:start; margin-top:64px; grid-template-columns:1fr; gap:10px}
+  main > :not(.highlights){grid-column:1 / -1}
+  main > .news{margin-top:32px}
+  main > :not(.highlights):not(.news):first-of-type, .news + section.collapsible{margin-top:40px}
+  footer{margin-bottom:96px}
+}
 @media (max-width:780px){
   .highlights{grid-template-columns:1fr; gap:8px}
   .row{grid-template-columns:1fr; gap:2px}
