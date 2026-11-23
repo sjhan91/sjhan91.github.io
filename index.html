@@ -1066,6 +1066,24 @@ section.collapsible:not(.collapsed){padding-bottom:40px}
     Object.keys(links).forEach(function(id){ var s = document.getElementById(id); if (s) io.observe(s); });
   }
 })();
+// Keep each badge on the same line as the last word of its title (no lone badge on phones)
+(function(){
+  document.querySelectorAll('.t .badge').forEach(function(b){
+    var prev = b.previousSibling, host = b.parentNode;
+    while (prev && prev.nodeType === 3 && !prev.textContent.trim()) prev = prev.previousSibling;
+    if (!prev) return;
+    var link = prev.nodeType === 1 && prev.tagName === 'A' ? prev : null;
+    var txt = link ? link.lastChild : prev;
+    if (!txt || txt.nodeType !== 3) return;
+    var m = txt.textContent.match(/^([\s\S]*\s)(\S+)\s*$/);
+    if (!m) return;
+    txt.textContent = m[1];
+    var nw = document.createElement('span'); nw.className = 'nw';
+    if (link) { var a2 = link.cloneNode(false); a2.textContent = m[2]; nw.appendChild(a2); }
+    else nw.appendChild(document.createTextNode(m[2]));
+    host.insertBefore(nw, b); nw.appendChild(b);
+  });
+})();
 </script>
 <!-- Visitor statistics (cookie-free): https://sjhan91.goatcounter.com -->
 <script data-goatcounter="https://sjhan91.goatcounter.com/count" async src="https://gc.zgo.at/count.js"></script>
