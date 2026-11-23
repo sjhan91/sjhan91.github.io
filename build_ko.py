@@ -64,7 +64,7 @@ def matching_close(src, tag, start):
 
 YEAR = re.compile(r'<div class="when">(\d{4})')
 TITLE = re.compile(r'<div class="t"[^>]*>(.*?)</div>', re.S)
-CONTAINERS = re.compile(r'<div class="(?:group-body|sec-body)" id="(?:pg-[a-z]+-body|talks-body|teaching-body|advisory-body|service-body)">')
+CONTAINERS = re.compile(r'<div class="(?:group-body|sec-body)" id="(?:pg-[a-z]+-body|talks-body|teaching-body|advisory-body)">')
 
 
 def title_len(row):
